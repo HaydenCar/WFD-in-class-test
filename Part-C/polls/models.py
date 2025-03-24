@@ -61,11 +61,17 @@ class Service(models.Model):
     hourly_rate = models.IntegerField()
 
 class Service_Mechanic(models.Model):
+    service_mechanic_id = models.AutoField(primary_key=True)
     service_ticket_id = models.ForeignKey(Service_Ticket)
     service_id = models.ForeignKey(Service)
     mechanic_id = models.ForeignKey(Mechanic)
+    hours = models.IntegerField()
+    rates = models.IntegerField()
+    comments = models.TextField()
 
 class Parts_Used(models.Model):
-    parts_used_id = models.ForeignKey(Service_Ticket)
-    service_id = models.ForeignKey(Service)
-    mechanic_id = models.ForeignKey(Mechanic)
+    parts_used_id = models.AutoField(primary_key=True)
+    service_ticket_id = models.ForeignKey(Service)
+    part_id = models.ForeignKey(Parts)
+    number_used = models.IntegerField()
+    price = models.FloatField()
